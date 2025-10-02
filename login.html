@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Login - Cyber Toolkit</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="container">
+    <h1>Login</h1>
+    <form id="loginForm">
+        <input type="text" id="loginUsername" placeholder="Enter Username" required>
+        <input type="password" id="loginPassword" placeholder="Enter Password" required>
+        <button type="submit" class="btn">Login</button>
+    </form>
+    <a href="register.html">New user? Register here</a>
+</div>
+
+<script>
+let users = JSON.parse(localStorage.getItem('users') || '{}');
+document.getElementById('loginForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    const username = document.getElementById('loginUsername').value.trim();
+    const password = document.getElementById('loginPassword').value;
+    if(users[username] && users[username] === password){
+        localStorage.setItem('currentUser', username);
+        alert("✅ Login successful! Redirecting...");
+        window.location.href = "main.html";
+    } else {
+        alert("❌ Invalid username or password!");
+    }
+});
+</script>
+</body>
+</html>

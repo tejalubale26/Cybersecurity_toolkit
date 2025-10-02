@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Cyber Security Toolkit Dashboard</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" href="style.css">
+<script src="https://cdn.jsdelivr.net/pyodide/v0.24.1/full/pyodide.js"></script>
+</head>
+<body>
+
+<header>
+  <div class="top-row">
+    <h1>Cyber Security Toolkit</h1>
+    <div class="auth">
+      <div id="userDisplay">Signed in as —</div>
+      <button class="btn-danger" id="logoutBtn">Logout</button>
+    </div>
+  </div>
+  <h3>Your Ultimate Security Dashboard</h3> <!-- Project title below top row -->
+</header>
+
+
+
+<div class="wrap">
+  <div class="main-col">
+
+    <!-- Malware Scanner -->
+    <section class="card tool full-col" id="malwareTool">
+      <h2>Malware Scanner</h2>
+      <label>Upload file to scan</label>
+      <input type="file" id="fileInput">
+      <div class="controls">
+        <button class="btn" id="scanBtn">Scan</button>
+        <button class="btn" id="sigBtn">Add Signature</button>
+        <button class="btn" id="exportSigs">Export Signatures</button>
+        <button class="btn" id="clearSigs">Clear Signatures</button>
+      </div>
+      <label>Result</label>
+      <pre id="scanOut">—</pre>
+    </section>
+
+    <!-- Password Strength Checker -->
+    <section class="card tool">
+      <h2>Password Strength Checker</h2>
+      <label>Enter password</label>
+      <input type="password" id="pwdInput" placeholder="Enter password">
+      <div class="controls"><button class="btn" id="pwdBtn">Check Strength</button></div>
+      <label>Strength</label>
+      <pre id="pwdOut">—</pre>
+    </section>
+
+    <!-- MD5 Hash Cracker -->
+    <section class="card tool">
+      <h2>MD5 Hash Cracker</h2>
+      <label>MD5 hash</label>
+      <input type="text" id="md5Input" placeholder="Enter MD5 hash">
+      <label>Upload Wordlist</label>
+      <input type="file" id="wordlistInput" accept=".txt">
+      <div class="controls"><button class="btn" id="crackBtn">Crack Hash</button></div>
+      <label>Result</label>
+      <pre id="hashOut">—</pre>
+    </section>
+
+    <!-- SHA256 Hash Generator -->
+    <section class="card tool">
+      <h2>SHA256 Hash Generator</h2>
+      <label>Enter text</label>
+      <input type="text" id="shaInput" placeholder="Type text to hash">
+      <div class="controls"><button class="btn" id="shaBtn">Generate SHA256</button></div>
+      <label>Result</label>
+      <pre id="shaOut">—</pre>
+    </section>
+
+    <!-- Port Scanner -->
+    <section class="card tool" id="portTool">
+      <h2>Port Scanner</h2>
+      <label>Target domain or IP</label>
+      <input type="text" id="targetInput" placeholder="example.com">
+      <div class="controls"><button class="btn" id="portBtn">Scan Ports</button></div>
+      <label>Result</label>
+      <pre id="portOut">—</pre>
+    </section>
+
+    <!-- Network Sniffer -->
+    <section class="card tool" id="sniffTool">
+      <h2>Network Sniffer (Simulated)</h2>
+      <div class="controls">
+        <button class="btn" id="sniffStart">Start Capture</button>
+        <button class="btn" id="sniffStop">Stop</button>
+        <button class="btn" id="sniffClear">Clear</button>
+      </div>
+      <label>Captured Packets</label>
+      <pre id="sniffOut">—</pre>
+    </section>
+
+    <!-- Subnet / CIDR Calculator -->
+    <section class="card tool">
+      <h2>Subnet / CIDR Calculator</h2>
+      <label>Enter IPv4 address and mask or CIDR</label>
+      <input type="text" id="cidrInput" placeholder="192.168.1.10/24 or 10.0.0.1 255.255.255.0">
+      <div class="controls">
+        <button class="btn" id="calcSubnetBtn">Calculate</button>
+        <button class="btn" id="clearSubnetBtn">Clear</button>
+      </div>
+      <label>Result</label>
+      <pre id="cidrOut">—</pre>
+      <div class="small">Supports IPv4 input in CIDR or IP + netmask formats.</div>
+    </section>
+
+    <!-- Domain DNS Lookup -->
+    <section class="card tool">
+      <h2>Domain DNS Lookup (DNS-over-HTTPS)</h2>
+      <label>Enter domain</label>
+      <input type="text" id="domainInput" placeholder="example.com">
+      <label>Record type</label>
+      <select id="dnsType">
+        <option value="A">A</option>
+        <option value="AAAA">AAAA</option>
+        <option value="MX">MX</option>
+        <option value="NS">NS</option>
+        <option value="TXT">TXT</option>
+        <option value="SOA">SOA</option>
+        <option value="ANY">ANY</option>
+      </select>
+      <div class="controls"><button class="btn" id="dnsLookupBtn">Lookup</button></div>
+      <label>Result</label>
+      <pre id="dnsOut">—</pre>
+      <div class="small">Uses Google DNS-over-HTTPS. No API key required.</div>
+    </section>
+
+  </div>
+</div>
+
+<script src="main.js"></script> <!-- Keep all JS code in main.js if needed -->
+</body>
+</html>

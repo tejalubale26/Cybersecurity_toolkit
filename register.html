@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Register - Cyber Toolkit</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="container">
+    <h1>Create Account</h1>
+    <form id="registerForm">
+        <input type="text" id="regUsername" placeholder="Enter Username" required>
+        <input type="password" id="regPassword" placeholder="Enter Password" required>
+        <button type="submit" class="btn">Register</button>
+    </form>
+    <a href="login.html">Already have an account? Login</a>
+</div>
+
+<script>
+let users = JSON.parse(localStorage.getItem('users') || '{}');
+document.getElementById('registerForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    const username = document.getElementById('regUsername').value.trim();
+    const password = document.getElementById('regPassword').value;
+    if(users[username]){
+        alert("⚠️ User already exists! Please login instead.");
+    } else {
+        users[username] = password;
+        localStorage.setItem('users', JSON.stringify(users));
+        alert("✅ Registration successful! You can now login.");
+        window.location.href = "login.html";
+    }
+});
+</script>
+</body>
+</html>
